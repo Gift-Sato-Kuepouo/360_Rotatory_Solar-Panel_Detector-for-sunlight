@@ -121,7 +121,7 @@ flowchart LR
     INV --> SCHOOL["School<br/>classroom lighting, devices, evening study"]
     PANEL -. "trained operator swaps<br/>a failed panel in minutes" .-> OP["Field service"]
     BAT -. "powers the tracker<br/>(few Wh/day)" .-> PANEL
-
+```
 
 The tracker itself only consumes a few Wh per day (it moves only when the error leaves the
 deadband), so the energy it adds (+20–32%) is a clear net gain for the storage system.

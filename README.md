@@ -186,7 +186,7 @@ firmware/
     └── library.properties
 software/tracker_sim.py                      # same logic, closed-loop day simulation
 ```
-
+```
 ### 1. Upload the firmware (Arduino IDE or arduino-cli)
 
 **Arduino IDE**

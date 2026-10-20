@@ -17,7 +17,7 @@ jobs:
     name: C unit tests (tracking logic)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Build with sanitizers
         run: |
           gcc -std=c99 -Wall -Wextra -Werror -pedantic \
@@ -33,8 +33,8 @@ jobs:
     name: Simulation + repository integrity (pytest)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
       - name: Install test dependencies
@@ -48,7 +48,7 @@ jobs:
     name: Arduino firmware compile check
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: arduino/setup-arduino-cli@v2
       - name: Install AVR core and Servo library
         run: |

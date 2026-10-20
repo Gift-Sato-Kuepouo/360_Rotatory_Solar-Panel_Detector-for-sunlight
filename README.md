@@ -50,7 +50,7 @@ This project is one concrete answer:
    [research](#research-is-this-sustainable-for-low-income-cameroon)). On a small, affordable
    array, that margin is the difference between a storage facility that runs and one that does not.
 2. **Store it beside the load.** The panel feeds a charge controller and a battery bank housed in
-   a **storage house built beside the facility** — so energy is available after sunset for
+   a **storage house built beside the facility**  so energy is available after sunset for
    overnight crop-storage operations.
 3. **Survive the local market.** Solar panels sold locally are often low quality and fail early.
    The mechanical and electrical interface is designed so that **a trained person can swap a
@@ -69,43 +69,43 @@ A working breadboard-and-PCB demo of the full tracking process, plus CAD for the
 | Source design (Fritzing) | [`hardware/360_degree_solar_panel_detector.fzz`](hardware/360_degree_solar_panel_detector.fzz) |
 | Mechanical CAD | SolidWorks (turntable, gimbal brackets, panel frame — see [mechanical design](#mechanical-design-solidworks)) |
 
-- **Breadboard prototype** — the first complete wiring of the four-quadrant LDR sensor, the two
+- **Breadboard prototype** : the first complete wiring of the four-quadrant LDR sensor, the two
   drive servos and the controller, used to validate the process end to end.
-- **PCB design** — the same circuit consolidated onto a two-layer board so the tracker can be
+- **PCB design**: the same circuit consolidated onto a two-layer board so the tracker can be
   assembled more than once, more reliably, by trained local technicians.
-- **Demo unit** — the improved, complete build shown in the photo above: an iteration on the
+- **Demo unit** : the improved, complete build shown in the photo above: an iteration on the
   tracker from the [inspiration video](https://www.youtube.com/watch?v=zXX4d5eyvb8&t=152s)
   ("How to make solar tracker using arduino | Dual axis solar tracker using arduino"), reworked
   toward the vision design for on-ground use in Cameroon.
-- **Point-of-interest view** — a closer look at the demo/implementation from the key point of
+- **Point-of-interest view** : a closer look at the demo/implementation from the key point of
   interest (sensor/drive arrangement).
 
 ## Key features
 
-- **Continuous 360° azimuth rotation** — the panel follows the sun east → south → west across the
+- **Continuous 360° azimuth rotation** : the panel follows the sun east → south → west across the
   whole day; the firmware wraps the azimuth at 360° so it never hits an end stop.
-- **Bidirectional incline (tilt) axis** — the panel **inclines left and right** past horizontal
+- **Bidirectional incline (tilt) axis** : the panel **inclines left and right** past horizontal
   (mechanical window −10°…100°, configurable), which matters near the equator where the sun swings
   north and south of the zenith.
-- **Four-quadrant LDR sun detection** — 4 photocells + 4× 10 kΩ dividers compute a horizontal and
+- **Four-quadrant LDR sun detection** : 4 photocells + 4× 10 kΩ dividers compute a horizontal and
   a vertical light error; coarse/fine steps converge on the brightest direction.
-- **Deadband hysteresis (diffuse-light hold)** — under overcast sky or forest shade, where LDR
+- **Deadband hysteresis (diffuse-light hold)** : under overcast sky or forest shade, where LDR
   contrast is flat, the tracker holds position instead of hunting and wasting power.
-- **Night parking** — below the night threshold the panel parks east at a slight incline (5°) so
+- **Night parking** : below the night threshold the panel parks east at a slight incline (5°) so
   rain runs off and it is already facing the sunrise; it resumes automatically at dawn.
-- **Stall latch protection** — if the drives are commanded but the light picture stops responding
+- **Stall latch protection** : if the drives are commanded but the light picture stops responding
   (blocked mechanism, flat static light) the tracker stops moving and blinks its status LED
   instead of stripping gears.
-- **Panel-swap friendly** — after a trained operator exchanges a failed panel, one serial command
+- **Panel-swap friendly** : after a trained operator exchanges a failed panel, one serial command
   (`c`) clears the stall latch and tracking resumes with the existing calibration.
-- **Day-tested in simulation** — the exact C logic that runs on the Arduino is simulated over a
+- **Day-tested in simulation** : the exact C logic that runs on the Arduino is simulated over a
   synthetic equatorial day: **+29.7% energy vs a fixed panel, 99.2% of perfect sun-tracking**
   (see [testing](#testing---what-github-proves-on-every-push)).
 
 ## System architecture
 
 Energy is harvested by the tracker, conditioned by a charge controller and **stored inside a
-storage house built beside the load** — a farm crop-storage facility, a community storage house,
+storage house built beside the load** a farm crop-storage facility, a community storage house,
 or a school:
 
 ```mermaid
@@ -166,12 +166,12 @@ every push to confirm the design still matches the bill of materials below.
 
 The demo's mechanical assembly was modeled in **SolidWorks** before fabrication:
 
-- **Turntable + mast clamp** — carries the panel through a full 360° azimuth rotation.
-- **Incline gimbal brackets** — the pivot that lets the panel **lean left and right**, sized for
+- **Turntable + mast clamp**: carries the panel through a full 360° azimuth rotation.
+- **Incline gimbal brackets** : the pivot that lets the panel **lean left and right**, sized for
   the −10°…100° window the firmware allows.
-- **Panel frame with quick-release mounting** — the interface that makes the panel itself the
+- **Panel frame with quick-release mounting** : the interface that makes the panel itself the
   swappable item: four fasteners, one connector, no re-calibration of the tracker body.
-- **Servo horns / linkage** — converts servo travel to the logical 0–359° azimuth and the
+- **Servo horns / linkage** : converts servo travel to the logical 0–359° azimuth and the
   incline angle used in software.
 
 CAD-first iteration means part dimensions can be checked for interference and 3D-printed or

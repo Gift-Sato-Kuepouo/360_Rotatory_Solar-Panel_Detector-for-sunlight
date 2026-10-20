@@ -175,10 +175,6 @@ that the ground implementation should build on — not a separate redesign.
 
 ## Coding section - make it fully functional
 
-Everything needed to run the tracker is in this repository:
-```
-
-```
 ### 1. Upload the firmware (Arduino IDE or arduino-cli)
 
 **Arduino IDE**

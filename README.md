@@ -82,7 +82,7 @@ A working breadboard-and-PCB demo of the full tracking process, plus CAD for the
 
 ## Key features
 
-- **Continuous 360° azimuth rotation** : the panel follows the sun east → south → west across the
+- **Continuous 360° rotation** : the panel follows the sun east → south → west across the
   whole day; the firmware wraps the azimuth at 360° so it never hits an end stop.
 - **Bidirectional incline (tilt) axis** : the panel **inclines left and right** past horizontal
   (mechanical window −10°…100°, configurable), which matters near the equator where the sun swings
@@ -133,35 +133,6 @@ The Fritzing source of record is
 (open it with [Fritzing](https://fritzing.org)). The integrity test suite re-parses this file on
 every push to confirm the design still matches the bill of materials below.
 
-### Bill of materials (from the Fritzing design)
-
-| Ref | Qty | Part | Role |
-|---|---|---|---|
-| R1–R4 | 4 | LDR photocell | Quadrant sun sensing (top-left, top-right, bottom-left, bottom-right) |
-| R5–R8 | 4 | Resistor, **10 kΩ**, 5%, 400 mil | Voltage dividers from the LDRs into the ADC |
-| PV1 | 1 | Solar panel, 6 V (demo) | Harvest — scales to 100–200 W modular panels in the field unit |
-| J1 | 1 | Servo motor | **Azimuth drive** — rotates the turntable |
-| J2 | 1 | Servo motor | **Incline drive** — leans the panel left/right |
-| — | 1 | Arduino Uno/Nano | Runs the tracking logic (not in the fzz; shown on the breadboard) |
-| BB1 | 1 | Full-size breadboard | Prototype wiring |
-| PCB1 | 1 | Two-layer PCB | Repeatable production build of the tracker electronics |
-| — | 1 | PWM/MPPT charge controller + battery | Energy storage for the facility (field unit) |
-| — | 1 | Slip ring (field unit) | Continuous 360° azimuth without twisting the cables |
-
-### Wiring (demo, matches the breadboard photo)
-
-| Signal | Arduino pin | Notes |
-|---|---|---|
-| LDR top-left (R1) | A0 | 10 kΩ divider to 5 V / GND |
-| LDR top-right (R2) | A1 | 10 kΩ divider |
-| LDR bottom-left (R3) | A2 | 10 kΩ divider |
-| LDR bottom-right (R4) | A3 | 10 kΩ divider |
-| Pan servo (J1) | D9 (PWM) | Servo powered from a separate 5 V rail — **not** from the Arduino 5 V pin |
-| Incline servo (J2) | D10 (PWM) | Same external 5 V rail |
-| Status LED | D13 (built-in) | Solid = tracking, off = night park, blinking = stall latch |
-| Serial monitor | USB / 115200 baud | Telemetry + service commands |
-
-
 ## Mechanical design (SolidWorks)
 
 The demo's mechanical assembly was modeled in **SolidWorks** before fabrication:
@@ -187,9 +158,7 @@ configured as closely as possible to the field vision.
 
 ![Reference design for future ground implementation in Cameroon](docs/media/vision-demo.png)
 
-*The vision implementation — the reference design for a future ground unit.*
-
-What the reference design locks in for the ground build:
+*The picture is the vision implementation design for a future ground unit.*
 
 | Aspect | Reference choice | Why |
 |---|---|---|

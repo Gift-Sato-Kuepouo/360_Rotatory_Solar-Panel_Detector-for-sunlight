@@ -176,16 +176,8 @@ that the ground implementation should build on — not a separate redesign.
 ## Coding section - make it fully functional
 
 Everything needed to run the tracker is in this repository:
-
-
-firmware/
-├── solar_tracker/solar_tracker.ino          # the sketch you upload
-└── libraries/tracking_logic/                # portable C99 tracking core
-    ├── tracking_logic.h
-    ├── tracking_logic.c
-    └── library.properties
-software/tracker_sim.py                      # same logic, closed-loop day simulation
 ```
+
 ```
 ### 1. Upload the firmware (Arduino IDE or arduino-cli)
 

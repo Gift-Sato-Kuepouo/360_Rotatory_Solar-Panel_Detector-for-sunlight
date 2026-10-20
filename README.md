@@ -12,7 +12,7 @@ A dual-axis, **360° rotatable solar panel** that finds the sun by itself and st
 
 *The demo I built to test the full process an improved version of the tracker from the [inspiration video](https://www.youtube.com/watch?v=zXX4d5eyvb8&t=152s), designed to be closer to the final vision picture that my research says low-income communities in Cameroon could actually deploy on the ground.*
 
----
+
 
 ## Table of contents
 
@@ -34,7 +34,7 @@ A dual-axis, **360° rotatable solar panel** that finds the sun by itself and st
 - [Acknowledgements](#acknowledgements)
 - [License](#license)
 
----
+
 
 ## Why this exists
 
@@ -121,7 +121,7 @@ flowchart LR
     INV --> SCHOOL["School<br/>classroom lighting, devices, evening study"]
     PANEL -. "trained operator swaps<br/>a failed panel in minutes" .-> OP["Field service"]
     BAT -. "powers the tracker<br/>(few Wh/day)" .-> PANEL
-```
+
 
 The tracker itself only consumes a few Wh per day (it moves only when the error leaves the
 deadband), so the energy it adds (+20–32%) is a clear net gain for the storage system.
@@ -211,7 +211,7 @@ that the ground implementation should build on — not a separate redesign.
 
 Everything needed to run the tracker is in this repository:
 
-```
+
 firmware/
 ├── solar_tracker/solar_tracker.ino          # the sketch you upload
 └── libraries/tracking_logic/                # portable C99 tracking core
@@ -584,7 +584,7 @@ facility / school**, a complete power-and-purpose loop for an underserved villag
 
 ## Roadmap
 
-- [ ] Slip-ring + geared continuous-azimuth drive with an azimuth encoder (removes the servo-range
+- [ ] Slip-ring & geared continuous-azimuth drive with an azimuth encoder (removes the servo-range
       mapping from the field unit)
 - [ ] Anemometer-triggered survival park for storms in the forest zones
 - [ ] Battery / charge-controller telemetry on the same serial stream (state-of-charge LED codes)

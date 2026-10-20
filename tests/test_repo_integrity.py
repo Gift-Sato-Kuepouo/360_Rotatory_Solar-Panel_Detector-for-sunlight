@@ -22,6 +22,7 @@ REQUIRED_FILES = [
     "docs/research.md",
     "docs/media/README.md",
     "docs/media/vision-demo.png",
+    "docs/media/poi.png",
     "docs/media/pcb-design.png",
     "docs/media/breadboard-prototype.png",
     "hardware/360_degree_solar_panel_detector.fzz",
@@ -44,7 +45,7 @@ def test_all_required_files_exist():
 
 
 def test_photos_are_real_pngs():
-    for name in ("vision-demo.png", "pcb-design.png", "breadboard-prototype.png"):
+    for name in ("vision-demo.png", "poi.png", "pcb-design.png", "breadboard-prototype.png"):
         data = (ROOT / "docs" / "media" / name).read_bytes()[:8]
         assert data == PNG_MAGIC, f"{name} is not a valid PNG"
 
@@ -79,7 +80,7 @@ def test_fritzing_design_is_valid_and_matches_bom():
 
 def test_readme_references_every_image():
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
-    for img in ("vision-demo.png", "pcb-design.png", "breadboard-prototype.png"):
+    for img in ("vision-demo.png", "poi.png", "pcb-design.png", "breadboard-prototype.png"):
         assert img in readme, f"README must embed {img}"
         assert (ROOT / "docs" / "media" / img).is_file()
 

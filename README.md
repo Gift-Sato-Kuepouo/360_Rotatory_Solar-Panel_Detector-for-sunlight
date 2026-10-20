@@ -22,6 +22,7 @@ A dual-axis, **360° rotatable solar panel** that finds the sun by itself and st
 - [System architecture](#system-architecture)
 - [Hardware design](#hardware-design)
 - [Mechanical design (SolidWorks)](#mechanical-design-solidworks)
+- [Reference design for future ground implementation](#reference-design-for-future-ground-implementation)
 - [Coding section - make it fully functional](#coding-section---make-it-fully-functional)
 - [Testing - what GitHub proves on every push](#testing---what-github-proves-on-every-push)
 - [Deployment: farms, storage houses and schools](#deployment-farms-storage-houses-and-schools)
@@ -65,6 +66,7 @@ A working breadboard-and-PCB demo of the full tracking process, plus CAD for the
 | Sensing + actuation prototype (breadboard) | ![Breadboard prototype](docs/media/breadboard-prototype.png) |
 | Dedicated PCB for the tracker electronics | ![PCB design](docs/media/pcb-design.png) |
 | Full process demo + vision implementation | ![Demo / vision implementation](docs/media/vision-demo.png) |
+| Point-of-interest view of the demo | ![Point of interest](docs/media/poi.png) |
 | Source design (Fritzing) | [`hardware/360_degree_solar_panel_detector.fzz`](hardware/360_degree_solar_panel_detector.fzz) |
 | Mechanical CAD | SolidWorks (turntable, gimbal brackets, panel frame — see [mechanical design](#mechanical-design-solidworks)) |
 
@@ -76,6 +78,8 @@ A working breadboard-and-PCB demo of the full tracking process, plus CAD for the
   tracker from the [inspiration video](https://www.youtube.com/watch?v=zXX4d5eyvb8&t=152s)
   ("How to make solar tracker using arduino | Dual axis solar tracker using arduino"), reworked
   toward the vision design for on-ground use in Cameroon.
+- **Point-of-interest view** — a closer look at the demo/implementation from the key point of
+  interest (sensor/drive arrangement).
 
 ## Key features
 
@@ -177,6 +181,32 @@ The demo's mechanical assembly was modeled in **SolidWorks** before fabrication:
 CAD-first iteration means part dimensions can be checked for interference and 3D-printed or
 locally machined before anything is cut — important where ordering replacements is slow and
 expensive.
+
+## Reference design for future ground implementation
+
+The photo below is the **reference design** this repository commits to for the next stage: an
+on-ground build in dense-forest, low-income communities in Cameroon. It is an improved version
+of the tracker from the [inspiration video](https://www.youtube.com/watch?v=zXX4d5eyvb8&t=152s),
+configured as closely as possible to the field vision.
+
+![Reference design for future ground implementation in Cameroon](docs/media/vision-demo.png)
+
+*The vision implementation — the reference design for a future ground unit.*
+
+What the reference design locks in for the ground build:
+
+| Aspect | Reference choice | Why |
+|---|---|---|
+| Sensing | Four-quadrant LDR (A0–A3, 10 kΩ dividers) | Cheap, locally available, no calibration tooling needed |
+| Azimuth | Continuous 360° (turntable + slip ring in field unit) | Full east→south→west sun path; no end stops |
+| Incline | Bidirectional −10°…100° (left/right) | Equatorial sun swings north and south of the zenith |
+| Controller | Arduino Uno/Nano + portable C99 core in this repo | Reproducible, CI-tested, one-command flash |
+| Panel | Modular, quick-release, field-swappable | Local low-quality panels fail early; swap in minutes |
+| Storage | Battery + controller in a storage house beside the load | Energy usable exactly where crop storage / school needs it |
+| Mechanics | SolidWorks turntable, gimbal brackets, panel frame | 3D-print or machine locally; parts checked for interference |
+
+The firmware, simulation, BOM and wiring in this repository are the software/hardware baseline
+that the ground implementation should build on — not a separate redesign.
 
 ## Coding section - make it fully functional
 
@@ -536,7 +566,8 @@ facility / school**, a complete power-and-purpose loop for an underserved villag
 ├── docs/
 │   ├── research.md                      # sustainability research + citations
 │   └── media/
-│       ├── vision-demo.png              # demo build / vision implementation
+│       ├── vision-demo.png              # demo build / reference design for ground implementation
+│       ├── poi.png                      # point-of-interest view of the demo
 │       ├── pcb-design.png               # PCB of the tracker electronics
 │       └── breadboard-prototype.png     # breadboard design
 ├── hardware/

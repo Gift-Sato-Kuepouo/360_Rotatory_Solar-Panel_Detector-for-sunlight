@@ -1,0 +1,70 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  c-unit-tests:
+    name: C unit tests (tracking logic)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build with sanitizers
+        run: |
+          gcc -std=c99 -Wall -Wextra -Werror -pedantic \
+              -fsanitize=address,undefined \
+              -Ifirmware/libraries/tracking_logic \
+              tests/test_tracking_logic.c \
+              firmware/libraries/tracking_logic/tracking_logic.c \
+              -o test_tracking_logic
+      - name: Run unit tests
+        run: ./test_tracking_logic
+
+  python-simulation:
+    name: Simulation + repository integrity (pytest)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install test dependencies
+        run: pip install -r requirements-dev.txt
+      - name: Run all pytest suites
+        run: pytest
+      - name: Simulated day report
+        run: python -m software.tracker_sim
+
+  firmware-build:
+    name: Arduino firmware compile check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: arduino/setup-arduino-cli@v2
+      - name: Install AVR core and Servo library
+        run: |
+          arduino-cli core update-index
+          arduino-cli core install arduino:avr
+          arduino-cli lib install Servo
+      - name: Compile for Arduino Uno
+        run: |
+          arduino-cli compile \
+            --fqbn arduino:avr:uno \
+            --library firmware/libraries/tracking_logic \
+            --warnings all \
+            firmware/solar_tracker
+      - name: Compile for Arduino Nano
+        run: |
+          arduino-cli compile \
+            --fqbn arduino:avr:nano \
+            --library firmware/libraries/tracking_logic \
+            firmware/solar_tracker

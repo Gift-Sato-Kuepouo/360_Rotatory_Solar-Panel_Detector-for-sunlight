@@ -6,11 +6,11 @@
 [![pytest](https://img.shields.io/badge/simulation-pytest-2E7D32)](tests/test_tracker_sim.py)
 [![Arduino](https://img.shields.io/badge/firmware-Arduino%20Uno%20%26%20Nano-00979D)](firmware/solar_tracker/solar_tracker.ino)
 
-A dual-axis, **360° rotatable solar panel** that finds the sun by itself and stores the energy it harvests — built as an affordable, field-serviceable power source for **dense-forest communities in Cameroon** whose villages receive unreliable, low-voltage electricity. The panel rotates a full 360° around its mast and **inclines left and right**, so it follows the sun from east to west all day and keeps crop-storage facilities, storage houses and schools running on stored solar energy.
+A dual-axis, **360° rotatable solar panel** that finds the sun by itself and stores the energy it harvests built as an affordable, field-serviceable power source for **dense-forest communities in Cameroon** whose villages receive unreliable, low-voltage electricity. The panel rotates a full 360° around its mast and **inclines left and right**, so it follows the sun from east to west all day and keeps crop-storage facilities, storage houses and schools running on stored solar energy.
 
-![The built demo - the implemented vision for field deployment in Cameroon](docs/media/vision-demo.png)
+![Point of interest](docs/media/poi.png)
 
-*The demo I built to test the full process — an improved version of the tracker from the [inspiration video](https://www.youtube.com/watch?v=zXX4d5eyvb8&t=152s), designed to be closer to the final vision picture that my research says low-income communities in Cameroon could actually deploy on the ground.*
+*The demo I built to test the full process an improved version of the tracker from the [inspiration video](https://www.youtube.com/watch?v=zXX4d5eyvb8&t=152s), designed to be closer to the final vision picture that my research says low-income communities in Cameroon could actually deploy on the ground.*
 
 ---
 
@@ -65,7 +65,6 @@ A working breadboard-and-PCB demo of the full tracking process, plus CAD for the
 |---|---|
 | Sensing + actuation prototype (breadboard) | ![Breadboard prototype](docs/media/breadboard-prototype.png) |
 | Dedicated PCB for the tracker electronics | ![PCB design](docs/media/pcb-design.png) |
-| Full process demo + vision implementation | ![Demo / vision implementation](docs/media/vision-demo.png) |
 | Point-of-interest view of the demo | ![Point of interest](docs/media/poi.png) |
 | Source design (Fritzing) | [`hardware/360_degree_solar_panel_detector.fzz`](hardware/360_degree_solar_panel_detector.fzz) |
 | Mechanical CAD | SolidWorks (turntable, gimbal brackets, panel frame — see [mechanical design](#mechanical-design-solidworks)) |

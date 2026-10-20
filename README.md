@@ -161,9 +161,6 @@ every push to confirm the design still matches the bill of materials below.
 | Status LED | D13 (built-in) | Solid = tracking, off = night park, blinking = stall latch |
 | Serial monitor | USB / 115200 baud | Telemetry + service commands |
 
-> Power note: servos must share **ground** with the Arduino but be fed from their own supply.
-> In the field unit, the 6 V panel + charge controller + battery + buck converter replace the USB
-> supply entirely, and a slip ring keeps the azimuth truly continuous.
 
 ## Mechanical design (SolidWorks)
 
